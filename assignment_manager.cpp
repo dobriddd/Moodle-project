@@ -4,7 +4,7 @@
 
 int AssignmentManager::getNextAssignmentId() {
     int maxId = 0;
-    std::ifstream file("./assignments.txt");
+    std::ifstream file("../assignments.txt");
 
     if (file.is_open()) {
         int id, courseId;
