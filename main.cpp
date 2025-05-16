@@ -63,7 +63,8 @@ int main() {
         } else if (choice == 2) {
             user->viewInbox();
         } else if (choice == 3) {
-            int recipientId;
+            size_t senderId = user->getId();
+            size_t recipientId;
             std::string content;
             std::cout << "Enter recipient ID: ";
             std::cin >> recipientId;
@@ -107,7 +108,8 @@ int main() {
             std::getline(std::cin, description);
             dynamic_cast<Teacher*>(user)->createAssignment(courseId, description);
         } else if (choice == 5) {
-            int recipientId;
+            size_t senderId = user->getId();
+            size_t recipientId;
             std::string content;
             std::cout << "Enter recipient ID: ";
             std::cin >> recipientId;
@@ -134,7 +136,8 @@ int main() {
         } else if (choice == 2) {
             dynamic_cast<Student*>(user)->viewGrades();
         } else if (choice == 3) {
-            int recipientId;
+            size_t senderId = user->getId();
+            size_t recipientId;
             std::string content;
             std::cout << "Enter recipient ID: ";
             std::cin >> recipientId;

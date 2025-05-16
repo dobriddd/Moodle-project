@@ -20,7 +20,7 @@ public:
     int getId() const;
     bool checkPassword(const std::string& pwd) const;
 
-    virtual void sendMessage(int recipientId, const std::string& content);
+    virtual void sendMessage(size_t recipientId, const std::string& content);
     virtual void viewInbox() const;
     virtual void deleteMessage(int index);
     virtual std::string getRole() const = 0;

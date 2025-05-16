@@ -5,8 +5,7 @@
 
 class MessageManager {
 public:
-    static void sendMessage(int senderId, int recipientId, const std::string& content);
-    static void saveMessage(const Message& msg);
+    static void sendMessage(size_t senderId, size_t recipientId, const std::string& content);
     static std::vector<Message> loadMessages();
 };
 #endif

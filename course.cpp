@@ -2,7 +2,7 @@
 #include <iostream>
 
 Course::Course(int id, const std::string& name, int teacherId)
-    : id(id), name(name), teacherId(teacherId) {}
+: id(id), name(name), teacherId(teacherId) {}
 
 void Course::enrollStudent(int studentId) {
     enrolledStudents.push_back(studentId);

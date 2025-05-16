@@ -16,42 +16,24 @@ bool User::checkPassword(const std::string& pwd) const {
     return password == pwd;
 }
 
-void User::sendMessage(int recipientId, const std::string& content) {
+void User::sendMessage(size_t recipientId, const std::string& content) {
     MessageManager::sendMessage(id, recipientId, content);
     std::cout << "Message sent from user ID " << id << " to user ID " << recipientId << std::endl;
 }
 
 void User::viewInbox() const {
-    std::ifstream file("../messages.txt");
-    if (!file.is_open()) {
-        std::cerr << "Error: Could not open messages.txt for reading!" << std::endl;
-        return;
-    }
-
-    std::string line;
-    std::cout << "Inbox for user ID " << id << ":\n";
+    auto messages = MessageManager::loadMessages();
     bool hasMessages = false;
-
-    while (std::getline(file, line)) {
-        std::istringstream iss(line);
-        int senderId, recipientId;
-        std::string content;
-        iss >> senderId >> recipientId;
-        std::getline(iss, content);
-
-        if (recipientId == id) {
-            std::cout << "From User ID " << senderId << ": " << content << std::endl;
+    for (const auto& msg : messages) {
+        if (msg.getRecipientId() == id) {
+            std::cout << msg.getMessageInfo() << std::endl;
             hasMessages = true;
         }
     }
-
     if (!hasMessages) {
-        std::cout << "No messages in your inbox.\n";
+        std::cout << "Your inbox is empty." << std::endl;
     }
-
-    file.close();
 }
-
 void User::deleteMessage(int index) {
     if (index >= 0 && index < static_cast<int>(inbox.size())) {
         inbox.erase(inbox.begin() + index);

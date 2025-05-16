@@ -4,12 +4,14 @@
 #include <ctime>
 
 class Message {
-    std::string sender;
+    size_t senderId;
+    size_t recipientId;
     std::string content;
-    std::time_t timestamp;
+    std::string timestamp;
 
 public:
-    Message(const std::string& sender, const std::string& content);
+    Message(size_t senderId, size_t recipientId, const std::string& content);
+    int getRecipientId() const;
     std::string getMessageInfo() const;
 };
 
